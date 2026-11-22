@@ -63,19 +63,18 @@ export default function Home() {
     setError("");
     setAnalysis(null);
 
-    try {
-      const formData = new FormData();
+   try {
+  const formData = new FormData();
 
-      formData.append("audio", file);
+  formData.append("audio", file);
 
-      const response = await fetch(
-        "http://localhost:5000/upload",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/upload`,
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
       const data = await response.json();
 
       console.log("Backend Response:", data);
@@ -83,7 +82,7 @@ export default function Home() {
       console.log("Analysis Data:", data.analysis);
       console.log("AI Result:", data.aiResult);
 
-      
+
        if (!response.ok) {
         throw new Error(
           data.message || "Backend analysis failed."
