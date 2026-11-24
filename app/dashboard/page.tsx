@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 /* ==============================
    TYPES
@@ -98,9 +98,12 @@ export default function Dashboard() {
 const [customerName, setCustomerName] = useState("");
 const [agentName, setAgentName] = useState("");
 const [callType, setCallType] = useState("Inbound");
-const [callDate, setCallDate] = useState(
-  new Date().toISOString().split("T")[0]
-);
+const [callDate, setCallDate] = useState("");
+
+  useEffect(() => {
+  setCallDate(new Date().toISOString().split("T")[0]);
+  }, []);
+
   const navigation = [
     { name: "Dashboard", icon: "📊" },
     { name: "Calls", icon: "📞" },
